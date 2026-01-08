@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Landing from './components/Landing';
 import Login from './components/Login';
 import Register from './components/Register';
 import Chat from './components/Chat';
@@ -25,15 +26,19 @@ function AppRoutes() {
   return (
     <Routes>
       <Route
+        path="/"
+        element={<Landing />}
+      />
+      <Route
         path="/login"
-        element={user ? <Navigate to="/" /> : <Login />}
+        element={user ? <Navigate to="/chat" /> : <Login />}
       />
       <Route
         path="/register"
-        element={user ? <Navigate to="/" /> : <Register />}
+        element={user ? <Navigate to="/chat" /> : <Register />}
       />
       <Route
-        path="/"
+        path="/chat"
         element={
           <ProtectedRoute>
             <Chat />
